@@ -30,29 +30,34 @@ Then reboot your machine.
 
 ## Getting Started
 
+Disconnect the STLink and USB device. Then, run
+
 ```bash
 git clone https://github.com/uw-midsun/box.git box && cd box
 vagrant up && vagrant reload
 vagrant ssh
 ```
 
-These 3 steps only need to be run the first time you start working with ``uwmidsun/box``. Otherwise, you can just do ``vagrant up``, followed by ``vagrant ssh``.
+These 3 steps only need to be run the first time you start working with ``uwmidsun/box``. Otherwise, you can just do ``vagrant up`` from the ``box/`` directory, followed by ``vagrant ssh``.
 
-**Note**: Ensure that when running these commands, the STLink and USB device is disconnected. The ``vagrant reload`` is necessary to ensure USB passthrough is enabled.
+**Note**: Ensure that when running these commands, the STLink and USB device is disconnected, otherwise the USB filter will not pass the USB device through to the VM. The ``vagrant reload`` is necessary to ensure USB passthrough is enabled.
 
 The ``shared/`` directory will be shared between your host operating system and the virtual environmnent (``/home/vagrant/shared/``).
 
 ## Vagrant Commands
 
-Open a terminal in the directory with the ``Vagrantfile`` and run these commands
+Open a terminal in the directory with the ``Vagrantfile`` and run these commands. More details can be found in the [Vagrant documentation](https://www.vagrantup.com/docs/cli/).
 
 ### Start or resume
+To start or resume a box
 
 ```bash
 vagrant up
 ```
 
 ### Connect to the box (ssh)
+
+Once the box is up, you can ``ssh`` to the box by doing
 
 ```bash
 vagrant ssh
@@ -64,7 +69,7 @@ When you're ready to stop the VM, you can exit it by running the following comma
 exit
 ```
 
-**Notes**: After you exit the VM, it will still be running! You can enter the VM again by sshing in again, or you can shutdown the VM by running
+**Note**: After you exit the VM, it will still be running! You can enter the VM again by sshing in again, or you can shutdown the VM by running
 
 ```bash
 vagrant halt
