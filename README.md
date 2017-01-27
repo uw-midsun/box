@@ -16,7 +16,9 @@ In addition, the virtual machine will be setup to automatically passthrough a ST
 * [VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 * [Vagrant](https://www.vagrantup.com/downloads.html)
 
-## macOS
+You may also need go into your BIOS to ensure that VT-x/AMD-v (also known as *Intel(R) Virtualization Technology*) settings are enabled.
+
+### macOS
 There's a [regression](https://www.virtualbox.org/ticket/15956) in VirtualBox that prevents USB passthrough from working correctly with STLink/JTag. On a Mac, ensure you install [VirtualBox 5.0.8](https://www.virtualbox.org/wiki/Download_Old_Builds_5_0_pre18) and the 5.0.8 Extension Pack.
 
 ### Linux
