@@ -5,6 +5,9 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+require_relative 'lib/better_usb.rb'
+require_relative 'lib/which.rb'
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "uwmidsun/box"
   config.vm.synced_folder "shared", "/home/vagrant/shared", :mount_options => ["dmode=777", "fmode=666"]
@@ -26,11 +29,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #   https://www.virtualbox.org/wiki/Downloads
     # On Linux, add your user to the vboxusers group
     #   sudo usermod -a -G vboxusers $USER
-    vb.customize ['usbfilter', 'add', '0',
-                  '--target', :id,
-                  '--name', 'STLink',
-                  '--vendorid', '0483',
-                  '--productid', '3748']
+    if not Which.which('VBoxManage').nil?
+      BetterUSB.usbfilter_add(vb, '0483', '3748', 'STLink')
+    else
+      vb.customize ["usbfilter", "add", "0",
+                    "--target", :id,
+                    "--name", "STLink",
+                    "--vendorid", "0483",
+                    "--productid", "3748"
+      ]
+    end
 
     # Customize the amount of memory on the VM:
     # vb.memory = "1024"
