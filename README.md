@@ -18,6 +18,9 @@ In addition, the virtual machine will be setup to automatically passthrough a ST
 
 You may also need go into your BIOS to ensure that VT-x/AMD-v (also known as *Intel(R) Virtualization Technology*) settings are enabled.
 
+### Windows
+On Windows, you may want to add the folder where you installed VirtualBox to your ``$PATH``. You can follow the instructions [here](http://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/) to do so. This step is *optional*.
+
 ### macOS
 There's a [regression](https://www.virtualbox.org/ticket/15956) in VirtualBox that prevents USB passthrough from working correctly with STLink/JTag. On a Mac, ensure you install [VirtualBox 5.0.8](https://www.virtualbox.org/wiki/Download_Old_Builds_5_0_pre18) and the 5.0.8 Extension Pack.
 
@@ -44,7 +47,11 @@ These 3 steps only need to be run the first time you start working with ``uwmids
 
 **Note**: Ensure that when running these commands, the STLink and USB device is disconnected, otherwise the USB filter will not pass the USB device through to the VM. The ``vagrant reload`` is necessary to ensure USB passthrough is enabled.
 
-The ``shared/`` directory will be shared between your host operating system and the virtual environmnent (``/home/vagrant/shared/``).
+The ``shared/`` directory will be shared between your host operating system and the virtual environment (``/home/vagrant/shared/``). You can clone the ``uw-midsun/firmware`` repository here from the ``ssh`` session, and then use your editor of choice from your host operating system
+
+```bash
+cd shared && git clone https://github.com/uw-midsun/firmware.git
+```
 
 ## Vagrant Commands
 
