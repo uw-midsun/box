@@ -22,7 +22,7 @@ You may also need go into your BIOS to ensure that VT-x/AMD-v (also known as *In
 On Windows, you may want to add the folder where you installed VirtualBox to your ``$PATH``. You can follow the instructions [here](http://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/) to do so. This step is *optional*.
 
 ### macOS
-There's a [regression](https://www.virtualbox.org/ticket/15956) in VirtualBox that prevents USB passthrough from working correctly with STLink/JTag. On a Mac, ensure you install [VirtualBox 5.0.8](https://www.virtualbox.org/wiki/Download_Old_Builds_5_0_pre18) and the 5.0.8 Extension Pack.
+Ensure you're using the latest version of VirtualBox (VirtualBox 5.1.16 or later). There was a [regression](https://www.virtualbox.org/ticket/15956) in VirtualBox that prevented USB passthrough from working correctly with STLink/JTag that was fixed in VirtualBox 5.1.16.
 
 ### Linux
 On **Linux**, you'll also have to add your user to the ``vboxusers`` group, so that the virtual machine can access your USB devices. After installing all the above, run
