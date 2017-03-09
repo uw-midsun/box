@@ -17,9 +17,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # VirtualBox configuration
   config.vm.provider "virtualbox" do |vb|
-    # Fix for VirtualBox 5.1 regression (for macOS)
-    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
-
     # Turn on USB 2.0 support
     vb.customize ['modifyvm', :id, '--usb', 'on']
     vb.customize ['modifyvm', :id, '--usbehci', 'on']
