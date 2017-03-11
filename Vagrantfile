@@ -10,16 +10,18 @@ require_relative 'lib/which.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "uwmidsun/box"
-  config.vm.synced_folder "shared", "/home/vagrant/shared", :mount_options => ["dmode=777", "fmode=666"]
+
+  config.vm.network "private_network", ip: "192.168.24.24"
+  config.vm.hostname = "midsunbox"
+
+  # Default synced_folder mount. Remove this line if using NFS
+  config.vm.synced_folder "shared", "/home/vagrant/shared", :mount_options => ["dmode=777", "fmode=777"]
 
   # Optional NFS. Make sure to remove other synced_folder line too
-  # config.vm.synced_folder "shared", "/home/vagrant/shared", :nfs => { :mount_options => ["dmode=777","fmode=666"] }
+  # config.vm.synced_folder "shared", "/home/vagrant/shared", :nfs => true
 
   # VirtualBox configuration
   config.vm.provider "virtualbox" do |vb|
-    # Fix for VirtualBox 5.1 regression (for macOS)
-    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
-
     # Turn on USB 2.0 support
     vb.customize ['modifyvm', :id, '--usb', 'on']
     vb.customize ['modifyvm', :id, '--usbehci', 'on']
