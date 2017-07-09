@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     "--target", :id,
                     "--name", "CMSIS-DAP",
                     "--vendorid", "1209",
-                    "--productid, "da42"
+                    "--productid", "da42"
       ]
     end
 
