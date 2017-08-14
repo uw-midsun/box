@@ -1,7 +1,11 @@
 module BetterUSB
 
+  require_relative 'which.rb'
+
   def self.usbfilter_exists(vendor_id, product_id)
-    machine_id_filepath = File.join(".vagrant", "machines", "default", "virtualbox", "id")
+    # .vagrant/ is located in the same directory as the Vagrantfile
+    # Vagrantfile is in the parent dir relative to ./lib/better_usb.rb
+    machine_id_filepath = File.join(File.expand_path(File.dirname(__FILE__)), '..', '.vagrant', 'machines', 'default', 'virtualbox', 'id')
 
     if not File.exists? machine_id_filepath
       # VM hasn't been created yet
@@ -17,12 +21,12 @@ module BetterUSB
   end
 
   def self.usbfilter_add(vb, vendor_id, product_id, filter_name)
-    unless usbfilter_exists(vendor_id, product_id)
-      vb.customize ["usbfilter", "add", "0",
-                    "--target", :id,
-                    "--name", filter_name,
-                    "--vendorid", vendor_id,
-                    "--productid", product_id
+    if Which.which('VBoxManage').nil? || !usbfilter_exists(vendor_id, product_id)
+      vb.customize ['usbfilter', 'add', '0',
+                    '--target', :id,
+                    '--name', filter_name,
+                    '--vendorid', vendor_id,
+                    '--productid', product_id
                    ]
     end
   end
