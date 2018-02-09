@@ -30,8 +30,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #   https://www.virtualbox.org/wiki/Downloads
     # On Linux, add your user to the vboxusers group
     #   sudo usermod -a -G vboxusers $USER
-    BetterUSB.usbfilter_add(vb, '0483', '3748', 'STLink')
     BetterUSB.usbfilter_add(vb, '1209', 'da42', 'CMSIS-DAP')
+    BetterUSB.usbfilter_add(vb, '0403', '6001', 'FTDI TTL232R-3V3')
+    BetterUSB.usbfilter_add(vb, '0483', '3748', 'STLink')
 
     # Customize the amount of memory on the VM:
     # vb.memory = "1024"
