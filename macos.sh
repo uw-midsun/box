@@ -6,6 +6,12 @@
 sed -i -e 's:BetterUSB.usbfilter_add:# BetterUSB.usbfilter_add:g' Vagrantfile
 vagrant reload
 
+# Build and install setsid
+git clone https://github.com/tzvetkoff/setsid-macosx.git
+make -C setsid-macosx
+mv setsid-macosx/setsid /usr/local/bin
+rm -rf setsid-macosx
+
 # Install brew non-interactively - copied from https://brew.sh/
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
 brew install openocd
