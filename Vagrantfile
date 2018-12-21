@@ -34,6 +34,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     BetterUSB.usbfilter_add(vb, '0403', '6001', 'FTDI TTL232R-3V3')
     BetterUSB.usbfilter_add(vb, '0483', '3748', 'STLink')
 
+    # Digi XBee
+    BetterUSB.usbfilter_add(vb, '0403', '6015', 'Digi XBee')
+
     # Customize the amount of memory on the VM:
     # vb.memory = "1024"
   end
