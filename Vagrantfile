@@ -38,7 +38,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     BetterUSB.usbfilter_add(vb, '0403', '6015', 'Digi XBee')
 
     # PEAK System PCAN-USB dongle
-    BetterUSB.usbfilter_add(vb, '0c72', '0012', 'PEAK System PCAN-USB')
+    BetterUSB.usbfilter_add(vb, '0c72', '0012', 'PEAK System PCAN-USB opto-decoupled')
+    BetterUSB.usbfilter_add(vb, '0c72', '000c', 'PEAK System PCAN-USB')
 
     # Customize the amount of memory on the VM:
     # vb.memory = "1024"
