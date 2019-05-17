@@ -43,6 +43,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Customize the amount of memory on the VM:
     # vb.memory = "1024"
+
+  # Set appropriate environment variables for Windows OS
+  if Vagrant::Util::Platform.windows? then
+    config.vm.provision "shell", inline: <<-SHELL
+    echo "export VIRTUALENV_ALWAYS_COPY=1" >> .profile
+    SHELL
+  end
+  
   end
 
 end
