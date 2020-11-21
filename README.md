@@ -50,7 +50,7 @@ These 3 steps only need to be run the first time you start working with ``uwmids
 The ``shared/`` directory in the vagrant box will be shared between your host operating system and the virtual environment. The location in your operating system is: (``/<where-you-cloned-this-repo>/shared/``). You can clone the ``uw-midsun/firmware`` repository here from the ``ssh`` session, and then use your editor of choice from your host operating system
 
 ```bash
-cd shared && git clone https://github.com/uw-midsun/firmware.git
+cd shared && git clone https://github.com/uw-midsun/firmware_xiv.git
 ```
 
 ## Vagrant Commands
