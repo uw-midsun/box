@@ -11,6 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'uwmidsun/box'
 
   config.vm.network 'private_network', ip: '192.168.24.24'
+  # For Django development on CAN-Explorer project
+  config.vm.network :forwarded_port, host: 8000, guest: 8000
   config.vm.hostname = 'midsunbox'
 
   # Default synced_folder mount. Remove this line if using NFS
