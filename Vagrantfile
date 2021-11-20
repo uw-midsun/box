@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # For Django development on CAN-Explorer project
   config.vm.network :forwarded_port, host: 8000, guest: 8000
   config.vm.network :forwarded_port, host: 3000, guest: 3000
+  config.vm.network :forwarded_port, host: 8086, guest: 8086
   
   config.vm.hostname = 'midsunbox'
 
