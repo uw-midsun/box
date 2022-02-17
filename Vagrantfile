@@ -9,7 +9,7 @@ require_relative 'lib/better_usb.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'backpack.box'
-  config.vm.box_url = 'https://github.com/uw-midsun/backpack/releases/download/v0.2/backpack.box'
+  config.vm.box_url = 'https://github.com/uw-midsun/backpack/releases/download/v0.3/backpack.box'
 
   config.vm.network 'private_network', ip: '192.168.24.24'
   
