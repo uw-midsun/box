@@ -31,6 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Turn on USB 2.0 support
     vb.customize ['modifyvm', :id, '--usb', 'on']
     vb.customize ['modifyvm', :id, '--usbehci', 'on']
+    vb.customize ['modifyvm', :id, '--usbxhci', 'on']
+    
 
     # Add USB filter to attach STLink programmer
     # The VirtualBox extension pack MUST be installed first
