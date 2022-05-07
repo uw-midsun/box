@@ -1,8 +1,8 @@
 # box
 
-``uwmidsun/box`` is a preconfigured Vagrant box with a full GCC ARM toolchain for compiling ARM code and flashing and debugging it with tools like OpenOCD and gdb. Using this virtual environment, you can get set up to compile and load ARM code from any platform that Vagrant supports (Windows, Mac OSX, Linux).
+``backpack.box`` is a preconfigured Vagrant box with a full GCC ARM toolchain for compiling ARM code and flashing and debugging it with tools like OpenOCD and gdb. Using this virtual environment, you can get set up to compile and load ARM code from any platform that Vagrant supports (Windows, Mac OSX, Linux).
 
-No provisioning tools or setup is really even required to use ``uwmidsun/box``. Since everything is packaged into the base box, running ``vagrant`` is super fast, you'll never have to worry about your environment breaking with updates, and you won't need the internet to code.
+No provisioning tools or setup is really even required to use ``backpack.box``. Since everything is packaged into the base box, running ``vagrant`` is super fast, you'll never have to worry about your environment breaking with updates, and you won't need the internet to code.
 
 The ARM toolchain that will be set up includes the following tools:
 
@@ -43,7 +43,7 @@ vagrant up && vagrant reload
 vagrant ssh
 ```
 
-These 3 steps only need to be run the first time you start working with ``uwmidsun/box``. Otherwise, you can just do ``vagrant up`` from the ``box/`` directory, followed by ``vagrant ssh``.
+These 3 steps only need to be run the first time you start working with ``backpack.box``. Otherwise, you can just do ``vagrant up`` from the ``box/`` directory, followed by ``vagrant ssh``.
 
 **Note**: Ensure that when running these commands, the STLink and USB device is disconnected, otherwise the USB filter will not pass the USB device through to the VM. The ``vagrant reload`` is necessary to ensure USB passthrough is enabled.
 
@@ -94,17 +94,15 @@ vagrant destroy
 
 ## Updating the box
 
-Although not necessary, if you want to check for updates, just type
+To update the box from older ``umidsun/box`` run the following commands outside of vagrant environment
 
 ```bash
-vagrant box outdated
+vagrant halt
+vagrant destroy
+vagrant up
 ```
 
-It will tell you if you are running the latest version or not. If it says you aren't, simply run
-
-```bash
-vagrant box update
-```
+make you ubuntu welcomes you as Ubuntu-20.04, if not, it means vagrant is still launching a cached version of your old box. Make sure to remove all trace of the original ``umidsun/box``.
 
 ## Features
 

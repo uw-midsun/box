@@ -8,14 +8,15 @@ VAGRANTFILE_API_VERSION = '2'
 require_relative 'lib/better_usb.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'uwmidsun/box'
+  config.vm.box = 'backpack.box'
+  config.vm.box_url = 'https://github.com/uw-midsun/backpack/releases/download/v0.3/backpack.box'
 
   config.vm.network 'private_network', ip: '192.168.24.24'
   
   # For Django development on CAN-Explorer project
-  config.vm.network :forwarded_port, host: 8000, guest: 8000
-  config.vm.network :forwarded_port, host: 3000, guest: 3000
-  config.vm.network :forwarded_port, host: 8086, guest: 8086
+  # config.vm.network :forwarded_port, host: 8000, guest: 8000
+  # config.vm.network :forwarded_port, host: 3000, guest: 3000
+  # config.vm.network :forwarded_port, host: 8086, guest: 8086
   
   config.vm.hostname = 'midsunbox'
 
@@ -30,6 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Turn on USB 2.0 support
     vb.customize ['modifyvm', :id, '--usb', 'on']
     vb.customize ['modifyvm', :id, '--usbehci', 'on']
+    vb.customize ['modifyvm', :id, '--usbxhci', 'on']
+    
 
     # Add USB filter to attach STLink programmer
     # The VirtualBox extension pack MUST be installed first
