@@ -1,1 +1,4 @@
-echo "HELLO"
+
+whoami
+
+echo "$EUID"
