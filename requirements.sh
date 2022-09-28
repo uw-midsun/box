@@ -1,5 +1,12 @@
+add_line_if_dne () {
+  if ! grep -q "$1" "$2"; then
+    echo "$1" >> "$2"
+  fi
+}
+
 apt update
 
+echo "==> Install common tools"
 apt -y install tmux
 apt -y install git
 apt -y install vim
@@ -23,8 +30,8 @@ python3 -m pip install PyYAML
 echo "==> Install go"
 wget https://golang.org/dl/go1.16.2.linux-amd64.tar.gz -O go-zip.tar.gz
 tar -xzf go-zip.tar.gz -C /usr/local
-echo 'PATH=$PATH:/usr/local/go/bin' >> /etc/profile
-echo 'GOPATH=/home/vagrant/go' >> /home/vagrant/.bashrc
+add_line_if_dne 'PATH=$PATH:/usr/local/go/bin' /etc/profile
+add_line_if_dne 'GOPATH=/home/vagrant/go' /home/vagrant/.bashrc
 rm go*.tar.gz
 
 echo "==> Install ruby"
@@ -42,7 +49,7 @@ ln -sf $(which clang-format-10) /usr/bin/clang-format
 echo "==> Install arm gcc"
 wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O arm-gcc.tar.bz2
 tar xfj arm-gcc.tar.bz2 -C /usr/local
-echo 'PATH=$PATH:/usr/local/gcc-arm-none-eabi-8-2019-q3-update/bin' >> /etc/profile
+add_line_if_dne 'PATH=$PATH:/usr/local/gcc-arm-none-eabi-8-2019-q3-update/bin' /etc/profile
 rm arm-gcc.tar.bz2
 
 echo "==> Install other toolchain pieces"
@@ -51,7 +58,7 @@ apt -y install openocd
 
 echo "==> Setup for minicom"
 touch /etc/minicom/minirc.dfl
-echo "pu addcarreturn    Yes" > /etc/minicom/minirc.dfl
+add_line_if_dne "pu addcarreturn    Yes" /etc/minicom/minirc.dfl
 
 echo "==> Install protobuf things"
 apt -y install software-properties-common
