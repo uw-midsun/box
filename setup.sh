@@ -7,7 +7,7 @@ echo "Checking requirements"
 
 curl -s https://raw.githubusercontent.com/uw-midsun/box/requirements/requirements.sh -O "requirements.sh"
 
-if ![[ -f "requirements.sh" ]]; then
+if [ ! -f "requirements.sh" ]; then
   echo "Cannot download newest requirements"
   exit
 fi

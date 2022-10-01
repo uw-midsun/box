@@ -8,24 +8,18 @@ VAGRANTFILE_API_VERSION = '2'
 require_relative 'lib/better_usb.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'backpack.box'
-  config.vm.box_url = 'https://github.com/uw-midsun/backpack/releases/download/v0.3/backpack.box'
-
   config.vm.network 'private_network', ip: '192.168.24.24'
   
   # For Django development on CAN-Explorer project
   # config.vm.network :forwarded_port, host: 8000, guest: 8000
   # config.vm.network :forwarded_port, host: 3000, guest: 3000
   # config.vm.network :forwarded_port, host: 8086, guest: 8086
-  
-  config.vm.hostname = 'midsunbox'
 
   # Default synced_folder mount. Remove this line if using NFS
   config.vm.synced_folder 'shared', '/home/vagrant/shared', :mount_options => ["dmode=777", "fmode=777"]
 
   # Optional NFS. Make sure to remove other synced_folder line too
   # config.vm.synced_folder "shared", "/home/vagrant/shared", :nfs => true
-  config.vm.provision :shell, path: "setup.sh", run: 'always'
 
   ############################################################
   # Provider for Docker on Intel or ARM (aarch64)
@@ -39,13 +33,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     docker.volumes = ["/sys/fs/cgroup:/sys/fs/cgroup:rw"]
     docker.create_args = ["--cgroupns=host"]
     # Uncomment to force arm64 for testing images on Intel
-    # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]     
+    # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]
+    config.vm.provision :shell, path: "setup.sh", run: 'always'
   end  
   
   ############################################################
   # VirtualBox configuration
   ############################################################
   config.vm.provider 'virtualbox' do |vb|
+    config.vm.box = 'backpack.box'
+    config.vm.box_url = 'https://github.com/uw-midsun/backpack/releases/download/v0.3/backpack.box'
+    config.vm.hostname = 'midsunbox'  
+
     # Turn on USB 2.0 support
     vb.customize ['modifyvm', :id, '--usb', 'on']
     vb.customize ['modifyvm', :id, '--usbehci', 'on']
