@@ -4,7 +4,6 @@ add_line_if_dne () {
   fi
 }
 
-exit 
 apt-get update
 
 echo "==> Install common tools"
