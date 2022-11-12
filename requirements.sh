@@ -1,3 +1,14 @@
+echo "Checking requirements"
+
+if cmp --silent -- "requirements.sh" "completed_requirements.sh"; then
+  echo "Requirements up to date"
+  exit
+fi
+
+echo "Installing new requirements..."
+
+mv "requirements.sh" "completed_requirements.sh"
+
 add_line_if_dne () {
   if [ ! grep -q "$1" "$2" ]; then
     echo "$1" >> "$2"
