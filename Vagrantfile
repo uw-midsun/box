@@ -34,7 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     docker.create_args = ["--cgroupns=host"]
     # Uncomment to force arm64 for testing images on Intel
     # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]
-    config.vm.provision :shell, path: "setup.sh", run: 'always'
+    config.vm.provision "file", source: "./requirements.sh", destination: "requirements.sh"
+    config.vm.provision :shell, path: "requirements.sh", run: 'always'
   end  
   
   ############################################################
