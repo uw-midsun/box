@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ############################################################
   config.vm.provider :docker do |docker, override|
     override.vm.box = nil
-    docker.image = "rofrano/vagrant-provider:focal"
+    docker.image = "rofrano/vagrant-provider:ubuntu"
     docker.remains_running = true
     docker.has_ssh = true
     docker.privileged = true

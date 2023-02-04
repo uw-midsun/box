@@ -33,6 +33,7 @@ python3 -m pip install cpplint
 
 echo "==> Install tooling for CAN"
 apt-get -y install can-utils
+
 python3 -m pip install python-can
 python3 -m pip install cantools
 python3 -m pip install Jinja2
@@ -43,11 +44,11 @@ apt-get -y install gcc-8
 apt-get -y install clang-10
 apt-get -y install clang-format-10
 apt-get -y install gdb
+
 ln -sf $(which gcc-8) /usr/bin/gcc
 ln -sf $(which clang-10) /usr/bin/clang
 ln -sf $(which clang-format-10) /usr/bin/clang-format
 
-which arm-none-eabi-gcc > /dev/null
 if [ ! $? ]; then
   echo "==> Install arm gcc"
   wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O arm-gcc.tar.bz2
@@ -76,7 +77,6 @@ apt-get -y install autoconf
 apt-get -y install libtool
 apt-get -y install pkg-config
 apt-get -y install libprotoc-dev
-
 
 git clone https://github.com/protobuf-c/protobuf-c
 cd protobuf-c
