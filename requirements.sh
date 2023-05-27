@@ -16,6 +16,7 @@ add_line_if_dne () {
 }
 
 apt-get update
+apt-get -y install --no-install-recommends tzdata
 
 echo "==> Install common tools"
 apt-get -y install tmux
