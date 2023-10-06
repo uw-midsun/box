@@ -18,6 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Default synced_folder mount. Remove this line if using NFS
   config.vm.synced_folder 'shared', '/home/vagrant/shared', :mount_options => ["dmode=777", "fmode=777"]
 
+  # Setup script to run after machine boots
+  config.vm.provision :shell, path: "setup.sh", run: 'always'
   # Optional NFS. Make sure to remove other synced_folder line too
   # config.vm.synced_folder "shared", "/home/vagrant/shared", :nfs => true
 
@@ -34,8 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     docker.create_args = ["--cgroupns=host"]
     # Uncomment to force arm64 for testing images on Intel
     # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]
-    config.vm.provision :shell, path: "setup.sh", run: 'always'
-  end  
+  end
   
   ############################################################
   # VirtualBox configuration
