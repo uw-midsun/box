@@ -38,6 +38,7 @@ python3 -m pip install python-can
 python3 -m pip install cantools
 python3 -m pip install Jinja2
 python3 -m pip install PyYAML
+python3 -m pip install pyserial
 
 echo "==> Install clang and gcc"
 apt-get -y install gcc-8
