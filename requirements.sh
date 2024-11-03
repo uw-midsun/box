@@ -41,6 +41,7 @@ python3 -m pip install PyYAML
 python3 -m pip install pyserial
 
 echo "==> Install clang and gcc"
+apt install binutils-arm-none-eabi
 apt-get install -y libncurses5 libncursesw5
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 apt-get -y install gcc-11
