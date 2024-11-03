@@ -43,8 +43,8 @@ python3 -m pip install pyserial
 echo "==> Install clang and gcc"
 apt-get install -y libncurses5 libncursesw5
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
-apt-get -y install gcc-11=11.3.0-1ubuntu1~22.04
-apt-get -y install g++-11=11.3.0-1ubuntu1~22.04
+apt-get -y install gcc-11
+apt-get -y install g++-11
 apt-get -y install clang-10
 apt-get -y install clang-format-10
 apt-get -y install gdb
