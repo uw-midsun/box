@@ -41,21 +41,24 @@ python3 -m pip install PyYAML
 python3 -m pip install pyserial
 
 echo "==> Install clang and gcc"
-apt-get -y install gcc-8
+apt-get install -y libncurses5 libncursesw5
+add-apt-repository -y ppa:ubuntu-toolchain-r/test
+apt-get -y install gcc-11=11.3.0-1ubuntu1~22.04
+apt-get -y install g++-11=11.3.0-1ubuntu1~22.04
 apt-get -y install clang-10
 apt-get -y install clang-format-10
 apt-get -y install gdb
 
-ln -sf $(which gcc-8) /usr/bin/gcc
+ln -sf $(which gcc-11) /usr/bin/gcc
 ln -sf $(which clang-10) /usr/bin/clang
 ln -sf $(which clang-format-10) /usr/bin/clang-format
 
 if [ ! $? ]; then
-  echo "==> Install arm gcc"
-  wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/8-2019q3/RC1.1/gcc-arm-none-eabi-8-2019-q3-update-linux.tar.bz2 -O arm-gcc.tar.bz2
-  tar xfj arm-gcc.tar.bz2 -C /usr/local
-  add_line_if_dne 'PATH=$PATH:/usr/local/gcc-arm-none-eabi-8-2019-q3-update/bin' /etc/profile
-  rm arm-gcc.tar.bz2
+  echo "==> Install arm gcc 11.3"
+  wget https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi.tar.xz -O arm-gcc.tar.xz
+  tar xf arm-gcc.tar.xz -C /usr/local
+  add_line_if_dne 'PATH=$PATH:/usr/local/arm-gnu-toolchain-11.3.rel1-x86_64-arm-none-eabi/bin' /etc/profile
+  rm arm-gcc.tar.xz
 fi
 
 echo "==> Install other toolchain pieces"
