@@ -7,7 +7,7 @@ module BetterUSB
     # Vagrantfile is in the parent dir relative to ./lib/better_usb.rb
     machine_id_filepath = File.join(File.expand_path(File.dirname(__FILE__)), '..', '.vagrant', 'machines', 'default', 'virtualbox', 'id')
 
-    if not File.exists? machine_id_filepath
+    if not File.exist?(machine_id_filepath)
       # VM hasn't been created yet
       return false
     end

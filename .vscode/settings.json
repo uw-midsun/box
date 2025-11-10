@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "ekf.h": "c",
+        "bms_carrier.h": "c",
+        "adbms_afe.h": "c",
+        "adbms_afe_regs.h": "c",
+        "interrupts.h": "c",
+        "rear_controller.h": "c",
+        "__locale": "c",
+        "bitset": "c",
+        "rear_controller_state_manager.h": "c",
+        "queues.h": "c"
+    }
+}
